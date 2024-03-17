@@ -1,11 +1,20 @@
 import React from 'react';
 import {Routes, Route, Link} from 'react-router-dom'
+import { MainPage } from './routes/mainPage';
+import { Layout } from './components/Layout';
+import { Goods } from './store/mainPage/goods';
+import { ProductPage } from './routes/productPage';
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+  <>
+  <Routes>
+    <Route path='/' element={<Layout/>}>
+      <Route index element={<MainPage/>} />
+      <Route path='products/:name/:id' element={<ProductPage/>}/>
+    </Route>
+  </Routes>
+  </>
   );
 }
 
