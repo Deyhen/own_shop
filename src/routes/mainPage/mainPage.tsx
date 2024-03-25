@@ -1,12 +1,18 @@
 import { Product } from "../../components/product"
-import { Goods } from "../../store/mainPage/goods"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Item } from "../../store/mainPage/types"
+import { Goods, getGoods } from "../../store/mainPage/goods"
 
 
 export const MainPage = (): JSX.Element => {
 
-    const [listOfGoods, setListOfGoods] = useState<Item[]>(Goods)
+    useEffect( () => {
+         const response = getGoods()
+         console.log(response);
+    }, [])
+
+
+   const [listOfGoods, setListOfGoods] = useState<Item[]>(Goods)
 
     return (
         
