@@ -5,7 +5,6 @@ import { Goods } from "../../store/mainPage/goods"
 export const ProductPage = (): JSX.Element =>{
    const param = useParams()
    const product = Goods.find((item) => param.id === item.id)
-   console.log(product);
      return(
       <>
       {product ? (

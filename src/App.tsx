@@ -1,8 +1,7 @@
 import React from 'react';
-import {Routes, Route, Link} from 'react-router-dom'
+import {Routes, Route} from 'react-router-dom'
 import { MainPage } from './routes/mainPage';
 import { Layout } from './components/Layout';
-import { Goods } from './store/mainPage/goods';
 import { ProductPage } from './routes/productPage';
 
 function App() {

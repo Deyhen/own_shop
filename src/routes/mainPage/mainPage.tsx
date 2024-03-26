@@ -1,27 +1,23 @@
 import { Product } from "../../components/product"
-import React, { useEffect, useState } from "react"
-import { Item } from "../../store/mainPage/types"
-import { Goods, getGoods } from "../../store/mainPage/goods"
+import  {  useMemo } from "react"
+
+import { getGoods } from "../../store/mainPage/goods"
+import  { useAppDispatch, useAppSelector } from "../../store/store"
 
 
 export const MainPage = (): JSX.Element => {
+    const dispatch = useAppDispatch();
+    const goods = useAppSelector(state => state.goods.data)
 
-    useEffect( () => {
-         const response = getGoods()
-         console.log(response);
-    }, [])
-
-
-   const [listOfGoods, setListOfGoods] = useState<Item[]>(Goods)
+     useMemo( () => {
+        dispatch(getGoods())
+     }, [])
 
     return (
-        
         <div className="flex flex-row flex-wrap pl-10">
-            {listOfGoods.map(item => (
+            {goods.map(item => (
                 <Product {...item} key={item.id}/>
             ))}
-
         </div>
-        
     )
 }
