@@ -1,0 +1,2 @@
+export { PurchaseConfirmationPage } from "./purchaseConfirmationPage";
+

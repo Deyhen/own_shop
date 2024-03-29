@@ -1,27 +1,30 @@
-import { useParams } from "react-router-dom"
-import { Goods } from "../../store/mainPage/goods"
+
+import { Link, useLocation } from "react-router-dom";
+
 
 
 export const ProductPage = (): JSX.Element =>{
-   const param = useParams()
-   const product = Goods.find((item) => param.id === item.id)
+
+   const location = useLocation()
+   const { item } = location.state
      return(
-      <>
-      {product ? (
-         <div className="flex flex-row w-full">
-               <div className="ml-64 flex flex-col items-center justify-center">
-                  <div className="bg-element flex items-center justify-center my-4 h-60 w-52 rounded-3xl">IMG</div>
-                  <div className="bg-element flex items-center justify-center h-8 w-44 rounded-lg">SLIDER</div>
+      <div className="relative w-full">
+      {item ? (
+         <div className="flex h-full w-1/2 bg-bg flex-row absolute  border-element border-x-2 ml-96 p-8" >
+               <div className=" flex flex-col items-center">
+                  <div className="bg-bg border-2 border-element flex items-center justify-center my-4 h-60 w-52 rounded-3xl">IMG</div>
+                  <div className="bg-bg border-2 border-element flex items-center justify-center h-8 w-44 rounded-lg">SLIDER</div>
                </div>
                <div className="ml-12 my-4 flex flex-col items-start justify-start">
-                  <span className="text-element h-8 w-96 mb-2 rounded-sm font-bold text-4xl pl-2">{product ? product.name : "Unknown title"}</span>
-                  <span className="text-element h-8 w-40 mb-2 rounded-sm font-bold text-xl pl-2">{product ? product.price : "Unknown price"}$</span>
-                  <div className="bg-element flex items-center justify-center h-8 w-32 mt-32 ml-12 rounded-xl font-bold text-2xl">BUY</div>
+                  <span className=" h-8 w-96 mb-2 rounded-sm font-bold text-4xl pl-2">{item ? item.name : "Unknown title"}</span>
+                  <span className=" h-8 w-40 mb-2 rounded-sm font-bold text-xl pl-2">{item ? item.price : "Unknown price"}$</span>
+                  <Link to={'/products/purchaseConfirmation'} state={{item: item}} className="h-20 w-40 mt-40 ml-20"><div 
+                  className="bg-element hover:shadow-lg hover:shadow-element flex items-center justify-center rounded-lg font-bold text-2xl">BUY NOW</div></Link>
                </div>
          </div> )
-         : <div className="w-full my-6 flex items-center justify-center text-5xl font-bold text-element">
+         : <div className="w-full my-6 flex items-center justify-center text-5xl font-bold ">
             PAGE IS NOT FOUND
             </div>}
-        </>
+        </div>
      )
 }
