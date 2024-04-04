@@ -45,13 +45,8 @@ export const Login = (): JSX.Element => {
                 validationSchema={loginSchema}
                 onSubmit={(
                     values: Values,
-                    { setSubmitting }: FormikHelpers<Values>
                   ) => {
-                    setTimeout(() => {
-                        dispatch(login({email: values.email, password: values.password}))
-                      alert(JSON.stringify(values, null, 2));
-                      setSubmitting(false);
-                    }, 500);
+                    dispatch(login({email: values.email, password: values.password}))
                   }}>
                     <Form>
                         <Modal.Header >
@@ -65,7 +60,7 @@ export const Login = (): JSX.Element => {
                             
                         </Modal.Body>
                         <Modal.Footer>
-                            <MyButton children="submit" type="submit" className="w-20 h-12 mx-2 text-lg"/>
+                            <MyButton children="submit" onClick={handleClose} type="submit" className="w-20 h-12 mx-2 text-lg"/>
                             <MyButton children="cancel" onClick={handleClose} className="w-20 h-12 mx-2 text-lg"/>
                         </Modal.Footer>
                     </Form>

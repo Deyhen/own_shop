@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import {UsersState } from "./types";
+import {AuthState } from "./types";
 import axios from "axios";
 import { backendUrl } from "../api";
-import { RootState } from "../store";
+import store, { RootState } from "../store";
+import { getUser } from "../user/user";
 
-const initialState: UsersState = {
-  data: []
+const initialState: AuthState = {
+    accessToken: '',
 }
 
 export const login = createAsyncThunk(
@@ -13,6 +14,8 @@ export const login = createAsyncThunk(
     async ({email, password}: {email: string, password: string}) => {
         try {
             const res = await axios.post(`${backendUrl}/users/login`, {email, password})
+            localStorage.setItem('accessToken', res.data);
+            store.dispatch(getUser())
             console.log(res.data);
         } catch (error) {
             console.log(error);
@@ -26,17 +29,20 @@ export const signup = createAsyncThunk(
             if(tel === ""){
                 tel = undefined
             }
+            
             const res = axios.post(`${backendUrl}\/users/registration`, {firstname, lastname, email, password, tel})
-            console.log((await res).data);
+            localStorage.setItem('accessToken', (await res).data);
+            store.dispatch(getUser())
+            
         } catch (error) {
             console.log(error);
         }
     }
 )
-export const usersSlice = createSlice({
-    name: 'users',
+export const authSlice = createSlice({
+    name: 'auth',
     initialState: initialState,
     reducers: {},
 })
-export default usersSlice.reducer;
-export const selectUsersState = (state: RootState) => state.users
+export default authSlice.reducer;
+export const selectAuthState = (state: RootState) => state.auth

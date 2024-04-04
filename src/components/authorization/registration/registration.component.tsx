@@ -34,9 +34,7 @@ export const Signup = (): JSX.Element => {
             }}
             onSubmit={(
                 values: Values,
-                { setSubmitting }: FormikHelpers<Values>
               ) => {
-                setTimeout(() => {
                     dispatch(signup({
                         firstname: values.firstname,
                         lastname: values.lastname,
@@ -44,9 +42,6 @@ export const Signup = (): JSX.Element => {
                         password: values.password,
                         tel: values.tel
                     }))
-                  alert(JSON.stringify(values, null, 2));
-                  setSubmitting(false);
-                }, 500);
               }}>
                 <Form>
                     <Modal.Header>
