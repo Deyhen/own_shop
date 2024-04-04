@@ -2,9 +2,11 @@ import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { Middleware, combineReducers } from "redux";
 import goods from "./mainPage/goods";
+import users from "./authorization/authorization"
 
 export const reducer = combineReducers({
-    goods
+    goods,
+    users
 })
 
 const store = configureStore({

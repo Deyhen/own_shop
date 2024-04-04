@@ -6,6 +6,7 @@ import { ProductPage } from './routes/productPage';
 import { PurchaseConfirmationPage } from './routes/purchaseConfirmationPage';
 
 function App() {
+
   return (
   <>
   <Routes>

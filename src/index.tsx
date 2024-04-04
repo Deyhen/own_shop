@@ -5,6 +5,8 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import store from './store/store'
 import { Provider } from 'react-redux'
+import 'rsuite/dist/rsuite.min.css';
+
 
 
 const root = ReactDOM.createRoot(

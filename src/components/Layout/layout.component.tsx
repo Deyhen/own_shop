@@ -1,15 +1,10 @@
-import { Link, Outlet } from "react-router-dom"
+import { Outlet } from "react-router-dom"
+import { Header } from "./Header"
 
 export const Layout = () => {
     return(
         <>
-            <header className="w-full h-[10vh] bg-main flex items-center justify-center">
-                <Link to='/'>
-                    <div className='font-boold text-3xl text-bg'>
-                        Main page
-                    </div>
-                </Link>
-            </header>
+        <Header/>
 
                 <main className="flex h-[83vh]">
                     <Outlet/>

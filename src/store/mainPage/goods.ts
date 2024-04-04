@@ -38,4 +38,4 @@ export const getGoods = createAsyncThunk(
      })
   })
   export default goodsSlice.reducer;
-  export const selectAlbumsState = (state: RootState) => state.goods;
+  export const selectGoodsState = (state: RootState) => state.goods;
