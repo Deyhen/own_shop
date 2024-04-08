@@ -1,10 +1,11 @@
-import { Modal } from "rsuite"
+
 import { MyButton } from "../../button"
 import { useState } from "react";
-import { Formik, FormikHelpers, Form } from "formik";
+import { Formik, Form } from "formik";
 import { useAppDispatch } from "../../../store/store";
 import { MyInput } from "../../input";
 import { signup } from "../../../store/authorization/authorization";
+import { Modal } from "../../modalWindow";
 
 interface Values{
     firstname: string,
@@ -43,21 +44,19 @@ export const Signup = (): JSX.Element => {
                         tel: values.tel
                     }))
               }}>
-                <Form>
-                    <Modal.Header>
-                        <Modal.Title>Signup</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
+                <Form className="text-main">
+                    <span className="text-lg">Signup</span>
+                    <div>
                         <MyInput label="First name" id="firstname" name="firstname" placeholder="John"/>
                         <MyInput label="Last name" id="lastname" name="lastname" placeholder="Smith"/>
                         <MyInput label="Password" id="password" name="password" placeholder="your password"/>
                         <MyInput label="Email" id="email" name="email" placeholder="email"/>
                         <MyInput label="Tel" id="tel" name="tel" placeholder="+YYY XXXX XXX XX"/>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <MyButton children="submit" type="submit" onClick={handleClose} className="w-20 h-12 mx-2 text-lg"/>
-                        <MyButton children="cancel" onClick={handleClose} className="w-20 h-12 mx-2 text-lg"/>
-                    </Modal.Footer>
+                    </div>
+                    <div className="flex items-center justify-end">
+                        <MyButton children="submit" type="submit" onClick={handleClose} className="w-20 h-12 mx-2 text-lg "/>
+                        <MyButton children="cancel" onClick={handleClose} className="w-20 h-12 mx-2 text-lg "/>
+                    </div>
                 </Form>
             </Formik>
         </Modal>

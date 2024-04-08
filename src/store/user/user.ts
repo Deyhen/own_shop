@@ -5,7 +5,8 @@ import { backendUrl } from "../api";
 import { RootState } from "../store";
 
 const initialUser: User = {
-    username: "",
+    firstname: "",
+    lastname: "",
     password: "",
     id: "",
     email: "",

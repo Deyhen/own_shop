@@ -1,5 +1,5 @@
-export interface ModalWindowProps{
-    isModal: boolean,
-    header: string,
+export interface ModalProps{
+    open: boolean,
+    onClose: () => void,
     children: React.ReactNode
 }

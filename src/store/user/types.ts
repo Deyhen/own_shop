@@ -4,7 +4,8 @@ export interface UserState{
     data: User
 }
 export interface User {
-    username: string,
+    firstname: string,
+    lastname: string,
     password: string,
     id: string,
     email: string,

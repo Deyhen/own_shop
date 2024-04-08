@@ -1,4 +1,4 @@
-import { Modal } from "rsuite"
+// import { Modal } from "rsuite"
 import { MyButton } from "../../button"
 import { useState } from "react";
 import { Form, Formik, FormikHelpers } from "formik";
@@ -6,6 +6,7 @@ import { MyInput } from "../../input";
 import { useAppDispatch } from "../../../store/store";
 import { login } from "../../../store/authorization/authorization"
 import * as Yup from 'yup';
+import { Modal } from "../../modalWindow";
 
 
 interface Values {
@@ -48,21 +49,16 @@ export const Login = (): JSX.Element => {
                   ) => {
                     dispatch(login({email: values.email, password: values.password}))
                   }}>
-                    <Form>
-                        <Modal.Header >
-                            <Modal.Title> Login</Modal.Title>
-                        </Modal.Header>
-                        
-                        <Modal.Body>
-                            
-                                <MyInput label="Email" id="email" name="email" placeholder="John@example.com"/>
-                                <MyInput label="Password" id="password" name="password" />
-                            
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <MyButton children="submit" onClick={handleClose} type="submit" className="w-20 h-12 mx-2 text-lg"/>
-                            <MyButton children="cancel" onClick={handleClose} className="w-20 h-12 mx-2 text-lg"/>
-                        </Modal.Footer>
+                    <Form className="text-main">
+                        <span  className="text-lg">Login</span> 
+                        <div>
+                            <MyInput label="Email" id="email" name="email" placeholder="John@example.com"/>
+                            <MyInput label="Password" id="password" name="password" />
+                        </div>
+                        <div className="flex items-center justify-end">
+                            <MyButton children="submit" onClick={handleClose} type="submit" className="w-20 h-12 mx-2 text-lg text-main"/>
+                            <MyButton children="cancel" onClick={handleClose} className="w-20 h-12 mx-2 text-lg text-main"/>
+                        </div>
                     </Form>
 
             </Formik>

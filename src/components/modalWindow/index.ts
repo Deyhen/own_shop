@@ -1,1 +1,1 @@
-export {ModalWindow} from "./modalWindow.component"
+export {Modal} from "./modalWindow.component"
