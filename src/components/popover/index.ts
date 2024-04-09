@@ -1,0 +1,1 @@
+export {MyPopover} from "./popover.component"

@@ -36,11 +36,11 @@ export const Login = (): JSX.Element => {
     })
     return(
         <>
-        <MyButton className="w-20 h-12" onClick={handleOpen}>Login</MyButton>
+        <MyButton className="w-20 h-12 " onClick={handleOpen}>Login</MyButton>
         <Modal open={open} onClose={handleClose}>
             <Formik 
                 initialValues={{
-                    email: "",
+                    email: "test1@example.com",
                     password: ""
                 }}
                 validationSchema={loginSchema}

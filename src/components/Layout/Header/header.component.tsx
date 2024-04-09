@@ -2,11 +2,16 @@
 import { Link } from "react-router-dom"
 import { Login } from "../../authorization/login"
 import { Signup } from "../../authorization/registration"
-import { useAppSelector } from "../../../store/store"
+import { useAppDispatch, useAppSelector } from "../../../store/store"
+import { Cart } from "../../cart"
+import { Dropdown } from "../../dropdown"
+import { cleanUser } from "../../../store/user/user"
 
 
 export const Header = (): JSX.Element => {
     const user = useAppSelector( state => state.user.data)
+    const dispatch = useAppDispatch()
+    const handleLogout = () => dispatch(cleanUser())
 
     return(
         <header className="w-full h-[10vh] bg-main flex items-center justify-between px-16">
@@ -20,8 +25,12 @@ export const Header = (): JSX.Element => {
                     <Signup/>
                 </div>) 
                 :
-                (<div>
-                    {user.firstname}
+                (<div className="flex">
+                    <Dropdown.Container title={user.firstname} buttonClassName="w-20 h-12 text-bg mx-4">
+                        <Dropdown.Item onClick={handleLogout}>Log out</Dropdown.Item>
+                    </Dropdown.Container>
+                    
+                    <Cart className="w-20 h-12 text-bg"/>
                 </div>)
                 }
 

@@ -4,6 +4,7 @@ import axios from "axios";
 import { backendUrl } from "../api";
 import store, { RootState } from "../store";
 import { getUser } from "../user/user";
+import { getCart } from "../cart/cart";
 
 const initialState: AuthState = {
     accessToken: '',
@@ -16,7 +17,7 @@ export const login = createAsyncThunk(
             const res = await axios.post(`${backendUrl}/users/login`, {email, password})
             localStorage.setItem('accessToken', res.data);
             store.dispatch(getUser())
-            console.log(res.data);
+            store.dispatch(getCart())
         } catch (error) {
             console.log(error);
         }
@@ -33,6 +34,7 @@ export const signup = createAsyncThunk(
             const res = axios.post(`${backendUrl}\/users/registration`, {firstname, lastname, email, password, tel})
             localStorage.setItem('accessToken', (await res).data);
             store.dispatch(getUser())
+            store.dispatch(getCart())
             
         } catch (error) {
             console.log(error);

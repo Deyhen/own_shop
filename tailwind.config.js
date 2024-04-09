@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin')
 module.exports = {
   content: ["./src/**/*.{html,js,ts,tsx}"],
   theme: {
@@ -10,10 +11,24 @@ module.exports = {
       'white': '#FFFFFF',
     },
     extend: {
-
     },
     
   },
-  plugins: [],
+  plugins: [
+    plugin(function({ addUtilities, addComponents, e, config }) {
+      const newUtilities = {
+        ".flex-self-end": {
+          justifySelf: "flex-end"
+        },
+        ".flex-self-start": {
+          justifySelf: "flex-start"
+        },
+        ".flex-self-center": {
+          justifySelf: "center"
+        }
+      }
+      addUtilities(newUtilities)
+    })
+  ],
 }
 

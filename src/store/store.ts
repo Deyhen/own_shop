@@ -5,12 +5,14 @@ import goods from "./mainPage/goods";
 import auth from "./authorization/authorization"
 import user from "./user/user";
 import users from "./users/users";
+import cart from "./cart/cart";
 
 export const reducer = combineReducers({
     goods,
     auth,
     users,
-    user
+    user,
+    cart
 })
 
 const customMiddleware: Middleware<{ state: RootState }, RootState> =

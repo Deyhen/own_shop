@@ -1,4 +1,4 @@
-import { Item } from "../mainPage/types"
+
 
 export interface UserState{
     data: User
@@ -10,6 +10,9 @@ export interface User {
     id: string,
     email: string,
     tel?: string,
-    cart: Item[],
+    cart: {
+        total: number,
+        data: []
+    }
     isAdmin: boolean
 }

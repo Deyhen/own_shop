@@ -1,1 +1,1 @@
-export { MyInput } from "./input";
+export { MyInput } from "./input.component";
