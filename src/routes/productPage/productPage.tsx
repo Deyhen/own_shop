@@ -1,20 +1,36 @@
 
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { MyButton } from "../../components/button";
-import { useAppDispatch } from "../../store/store";
-import { Item } from "../../store/mainPage/types";
-import { putInCart } from "../../store/cart/cart";
+import { useAppDispatch, useAppSelector } from "../../store/store";
+import { putInCart } from "../../store/user/cart";
+import { MyPopover } from "../../components/popover";
+import { useState } from "react";
+import { LocationState } from "../../App";
+
 
 
 
 export const ProductPage = (): JSX.Element =>{
    const location = useLocation()
-   const { item } = location.state
+   const { item } = location.state as LocationState
+
    const dispatch = useAppDispatch();
-   
+   const [open, setOpen] = useState(false)
+   const cart = useAppSelector(store => store.customer.cart)
+   const user = useAppSelector(store => store.customer.user.data)
+
+   const checkItemInCart = cart.goods.find(cartItem => {
+      return cartItem.product.id === item.id
+   })
+
    const handleAddToCart = () => { 
-      dispatch(putInCart({item: item}))
+      
+      dispatch(putInCart({
+         item: item
+      }))
+
    }
+   const handleOpen = () => setOpen(true)
 
      return(
       <div className=" w-full">
@@ -27,9 +43,16 @@ export const ProductPage = (): JSX.Element =>{
                <div className="ml-12 my-4 flex flex-col items-start justify-start">
                   <span className=" h-8 w-96 mb-2 rounded-sm font-bold text-4xl text-main pl-2">{item ? item.name : "Unknown title"}</span>
                   <span className=" h-8 w-40 mb-2 rounded-sm font-bold text-xl text-main pl-2">{item ? item.price : "Unknown price"}$</span>
-                  {/* <Link to={'/products/purchaseConfirmation'} state={{item: item}} className="h-20 w-40 mt-40 ml-20 no-underline hover:no-underline hover:text-main text-main"> */}
-                     <MyButton className="flex items-center justify-center font-bold text-2xl p-2 h-16 w-40 mt-40 ml-20" children="Add to card" onClick={handleAddToCart}/>
-                  {/* </Link> */}
+                  <div className="flex">
+                  { checkItemInCart?.product.id ?
+                     <div className="border-4 border-element rounded-lg flex items-center justify-center font-bold text-2xl p-2 h-16 w-40 mt-40 ml-20">
+                        In cart
+                     </div > :
+                     <MyPopover open={open} onClose={() => setOpen(false)} title="You should be logined">
+                        <MyButton className="flex items-center justify-center font-bold text-2xl p-2 h-16 w-40 mt-40 ml-20" children="Add to card" onClick={user.id ? handleAddToCart : handleOpen}/>
+                     </MyPopover>
+                  }     
+                  </div>
                </div>
          </div> )
          : <div className="w-full my-6 flex items-center justify-center text-5xl font-bold ">

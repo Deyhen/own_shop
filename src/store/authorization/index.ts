@@ -4,7 +4,7 @@ import axios from "axios";
 import { backendUrl } from "../api";
 import store, { RootState } from "../store";
 import { getUser } from "../user/user";
-import { getCart } from "../cart/cart";
+import { getCart } from "../user/cart";
 
 const initialState: AuthState = {
     accessToken: '',

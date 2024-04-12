@@ -1,18 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { Middleware, combineReducers } from "redux";
-import goods from "./mainPage/goods";
-import auth from "./authorization/authorization"
-import user from "./user/user";
-import users from "./users/users";
-import cart from "./cart/cart";
+import goods from "./goods";
+import auth from "./authorization"
+import users from "./users";
+import customer from "./user";
 
 export const reducer = combineReducers({
     goods,
     auth,
     users,
-    user,
-    cart
+    customer,
 })
 
 const customMiddleware: Middleware<{ state: RootState }, RootState> =

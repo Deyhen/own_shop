@@ -2,7 +2,6 @@ import { useRef, useState } from "react"
 import { MyButton } from "../button"
 import { DropdownItemProps, DropdownProps } from "./dropdown.props"
 import { useOnClickOutside } from "usehooks-ts"
-import { Portal } from "../portal"
 
 export const Container = ({title, children, buttonClassName, containerClassName}: DropdownProps):JSX.Element => {
     const [open, setOpen] = useState(false)
@@ -15,10 +14,10 @@ export const Container = ({title, children, buttonClassName, containerClassName}
     
     return(
         <div className="flex items-center justify-end relative flex-col ">
-            <MyButton onClick={handleOpen} className={`${buttonClassName}`}>{title}</MyButton>
+            <MyButton onClick={handleOpen} className={`${buttonClassName} ${open && "rounded-b-none"}`}>{title}</MyButton>
             
             { open &&
-                <div className={`bg-bg absolute top-full`} ref={ref}>
+                <div className={`bg-bg absolute top-full ${containerClassName}`} ref={ref}>
                     {children}
                 </div>
             }

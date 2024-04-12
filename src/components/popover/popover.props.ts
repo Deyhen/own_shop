@@ -1,7 +1,8 @@
 export interface PopoverProps {
     children: React.ReactNode,
-    className: string,
+    className?: string,
     onClose: () => void,
-
+    open: boolean,
+    title: string
 
 }

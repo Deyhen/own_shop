@@ -15,20 +15,7 @@ module.exports = {
     
   },
   plugins: [
-    plugin(function({ addUtilities, addComponents, e, config }) {
-      const newUtilities = {
-        ".flex-self-end": {
-          justifySelf: "flex-end"
-        },
-        ".flex-self-start": {
-          justifySelf: "flex-start"
-        },
-        ".flex-self-center": {
-          justifySelf: "center"
-        }
-      }
-      addUtilities(newUtilities)
-    })
+    
   ],
 }
 

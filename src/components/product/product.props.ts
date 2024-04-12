@@ -1,7 +1,13 @@
-import { Item } from "../../store/mainPage/types"
 
-export interface ProductProps  {
+import { Item } from "../../store/goods/types"
+import { CartItem } from "../../store/user/cart/types"
+
+export interface ProductCartProps  {
+    item: CartItem,
+    props?: any,
+    index: number
+}
+export interface ProductProps {
     item: Item,
-    isHome?: boolean,
     props?: any
 }

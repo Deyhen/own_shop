@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Form, Formik, FormikHelpers } from "formik";
 import { MyInput } from "../../input";
 import { useAppDispatch } from "../../../store/store";
-import { login } from "../../../store/authorization/authorization"
+import { login } from "../../../store/authorization"
 import * as Yup from 'yup';
 import { Modal } from "../../modalWindow";
 

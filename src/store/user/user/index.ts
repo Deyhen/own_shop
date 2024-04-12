@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { User, UserState } from "./types";
 import axios from "axios";
-import { backendUrl } from "../api";
-import { RootState } from "../store";
+import { backendUrl } from "../../api";
 
 const initialUser: User = {
     firstname: "",
@@ -11,15 +10,11 @@ const initialUser: User = {
     id: "",
     email: "",
     tel: "",
-    cart: {
-        total: 0,
-        data: []
-    },
     isAdmin: false
   }
-  const initialState: UserState = {
-    data: initialUser
-  }
+   const initialState: UserState = {
+     data: initialUser
+   }
 
   export const getUser = createAsyncThunk(
     'get user',
@@ -43,7 +38,7 @@ const initialUser: User = {
 )
 
 export const userSlice = createSlice({
-    name: 'user',
+    name: 'user-data',
     initialState: initialState,
     reducers: {
         cleanUser: state => {
@@ -60,4 +55,3 @@ export const {
     cleanUser
   } = userSlice.actions;
 export default userSlice.reducer;
-export const selectUserState = (state: RootState) => state.user

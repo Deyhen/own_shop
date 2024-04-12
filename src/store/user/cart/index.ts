@@ -1,9 +1,9 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { CartState } from "./types";
-import store, { RootState } from "../store";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { CartItem, CartState } from "./types";
+import store from "../../store";
 import axios from "axios";
-import { backendUrl } from "../api";
-import { Item } from "../mainPage/types";
+import { backendUrl } from "../../api";
+import { Item } from "../../goods/types";
 
 const initialState: CartState = {
     total: 0,
@@ -53,7 +53,7 @@ const initialState: CartState = {
     )
     export const deleteFromCart = createAsyncThunk(
         'delete from cart',
-        async ({onErrorRedirect, item}: {onErrorRedirect?: () => void, item: Item}) => {
+        async ({onErrorRedirect, item}: {onErrorRedirect?: () => void, item: CartItem}) => {
             try {
                 const accessToken =  checkToken(onErrorRedirect)
                 const res = await axios.delete(`${backendUrl}/user/cart`,
@@ -70,11 +70,35 @@ const initialState: CartState = {
             }
         }
     )
+    export const updateProductCount = createAsyncThunk(
+        'update product count in cart',
+        async ({onErrorRedirect, count, itemId}: {onErrorRedirect?: () => void, count: number, itemId: string}) => {
+            const accessToken =  checkToken(onErrorRedirect)
+            const res = await axios.patch(`${backendUrl}/user/cart/${itemId}`, {count},
+                {  
+                    headers: {
+                    "Authorization": "Bearer " + accessToken
+                    }
+                }
+                )
+                store.dispatch(getCart())
+            return res
+        }
+    )
 
 export const cartSlice = createSlice({
     name: 'cart',
     initialState: initialState,
-    reducers: {},
+    reducers: {
+        countIncrease: (state, index: PayloadAction<number>) => {
+            state.goods[index.payload].count += 1
+            store.dispatch(updateProductCount({count: state.goods[index.payload].count, itemId: state.goods[index.payload].product.id}))
+        },
+        countDecrease: (state, index: PayloadAction<number>) => {
+            state.goods[index.payload].count -= 1
+            store.dispatch(updateProductCount({count: state.goods[index.payload].count, itemId: state.goods[index.payload].product.id}))
+        },
+    },
     extraReducers: builder => {
         builder.addCase(getCart.fulfilled, (state, action) => {
             state.goods = action.payload?.data.data
@@ -82,5 +106,8 @@ export const cartSlice = createSlice({
         })
     }
 })
+export const {
+    countIncrease,
+    countDecrease
+  } = cartSlice.actions;
 export default cartSlice.reducer;
-export const selectCartState = (state: RootState) => state.cart

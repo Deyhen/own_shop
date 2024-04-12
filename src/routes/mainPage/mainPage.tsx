@@ -1,6 +1,6 @@
 import { Product } from "../../components/product"
 import  {  useMemo } from "react"
-import { getGoods } from "../../store/mainPage/goods"
+import { getGoods } from "../../store/goods"
 import  { useAppDispatch, useAppSelector } from "../../store/store"
 
 
@@ -9,15 +9,15 @@ export const MainPage = (): JSX.Element => {
     const goods = useAppSelector(state => state.goods.data)
     
 
-     useMemo( () => {
+    useMemo(() => {
         dispatch(getGoods())
-     }, [])
+    }, [dispatch])
 
     return (
         <div className="flex flex-row flex-wrap pl-10">
-            {goods.map(item => {
+            {goods.map((item) => {
                 return(
-                <Product item={item} key={item.id} isHome/>
+                <Product.Home item={item} key={item.id} />
             )})}
         </div>
     )

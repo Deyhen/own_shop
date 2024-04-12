@@ -4,9 +4,13 @@ import { MainPage } from './routes/mainPage';
 import { Layout } from './components/Layout';
 import { ProductPage } from './routes/productPage';
 import { PurchaseConfirmationPage } from './routes/purchaseConfirmationPage';
+import { Item } from './store/goods/types';
+
+ export interface LocationState {
+  item: Item
+ }
 
 function App() {
-
   return (
   <>
   <Routes>
