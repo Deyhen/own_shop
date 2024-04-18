@@ -34,7 +34,7 @@ export const Cart = ({item, index, ...props}: ProductCartProps): JSX.Element => 
         {
             item ? 
                 (<div className="flex mb-2 ml-2">
-                    <Link to={`/products/${item.product.id}`} state={{item: item}}{...props} id={item.product.id} className="no-underline hover:no-underline hover:text-main text-main flex
+                    <Link to={`/products/${item.product.id}`} state={{item: item.product}}{...props} id={item.product.id} className="no-underline hover:no-underline hover:text-main text-main flex
                     flex-row border-2 border-element hover:bg-element hover:shadow-element shadow-lg hover:bg-target items-start justify-between w-60 h-20">
                             <div className="h-full w-24 border-r-2 border-element  text-center">IMG</div>
                             <div className="flex flex-row justify-center items-center text-lg">

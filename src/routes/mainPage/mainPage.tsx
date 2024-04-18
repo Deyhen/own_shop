@@ -8,7 +8,6 @@ export const MainPage = (): JSX.Element => {
     const dispatch = useAppDispatch();
     const goods = useAppSelector(state => state.goods.data)
     
-
     useMemo(() => {
         dispatch(getGoods())
     }, [dispatch])

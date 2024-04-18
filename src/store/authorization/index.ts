@@ -31,7 +31,7 @@ export const signup = createAsyncThunk(
                 tel = undefined
             }
             
-            const res = axios.post(`${backendUrl}\/users/registration`, {firstname, lastname, email, password, tel})
+            const res = axios.post(`${backendUrl}/users/registration`, {firstname, lastname, email, password, tel})
             localStorage.setItem('accessToken', (await res).data);
             store.dispatch(getUser())
             store.dispatch(getCart())
